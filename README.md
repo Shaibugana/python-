@@ -55,3 +55,46 @@ def brightness(event):  # The brightness effect
         img3 = ImageTk.PhotoImage(img2)
         canvas2.create_image(300, 210, image=img3)
         canvas2.image = img3
+ def contrast(event):
+    global img_path, img4, img5
+    for m in range(0, v3.get()+1):
+        img = Image.open(img_path)
+        img.thumbnail((350, 350))
+        imgg = ImageEnhance.Contrast(img)
+        img4 = imgg.enhance(m)
+        img5 = ImageTk.PhotoImage(img4)
+        canvas2.create_image(300, 210, image=img5)
+        canvas2.image = img5
+
+
+def rotate(event):
+    global img_path, img6, img7
+    img = Image.open(img_path)
+    img.thumbnail((350, 350))
+    img6 = img.rotate(int(rotate_combo.get()))
+    img7 = ImageTk.PhotoImage(img6)
+    canvas2.create_image(300, 210, image=img7)
+    canvas2.image = img7
+
+
+def flip(event):
+    global img_path, img8, img9
+    img = Image.open(img_path)
+    img.thumbnail((350, 350))
+    if flip_combo.get() == "FLIP LEFT TO RIGHT":
+        img8 = img.transpose(Image.FLIP_LEFT_RIGHT)
+    elif flip_combo.get() == "FLIP TOP TO BOTTOM":
+        img8 = img.transpose(Image.FLIP_TOP_BOTTOM)
+    img9 = ImageTk.PhotoImage(img8)
+    canvas2.create_image(300, 210, image=img9)
+    canvas2.image = img9
+
+
+def border(event):
+    global img_path, img10, img11
+    img = Image.open(img_path)
+    img.thumbnail((350, 350))
+    img10 = ImageOps.expand(img, border=int(border_combo.get()), fill=95)
+    img11 = ImageTk.PhotoImage(img10)
+    canvas2.create_image(300, 210, image=img11)
+    canvas2.image = img11
