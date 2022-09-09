@@ -33,6 +33,64 @@ def select():  # Load images from the computer
     img.thumbnail((350, 350))
     img1 = ImageTk.PhotoImage(img)
     canvas2.create_image(300, 210, image=img1)
+    # create canvas to display image
+canvas2 = Canvas(root,width="600",height="420",relief=RIDGE,bd=2)
+canvas2.place(x=15,y=150)
+
+# create buttons
+btn1 = Button(root,text="Select Image",bg='black',fg='gold',font=('ariel 15 bold'),relief=GROOVE,command=select)
+btn1.place(x=100,y=595)
+btn2 = Button(root,text="Save",width=12,bg='black',fg='gold',font=('ariel 15 bold'),relief=GROOVE,command=save)
+btn2.place(x=280,y=595)
+btn3 = Button(root,text="Exit",width=12,bg='black',fg='gold',font=('ariel 15 bold'),relief=GROOVE,command=root.destroy)
+btn3.place(x=460,y=595)
+
+# Execute Tkinter
+root.mainloop()
+file=input('file')
+image=cv2.imread(file)
+cv2.imshow(file,image)
+
+def resize():
+    w_image =int(input('width'))
+    h_image = int(input('height'))
+    height,width = h_image,w_image
+    imgresive = cv2.resize(image,(height,width))
+    print(imgresive)
+    cv2.imshow('image resized',imgressive)
+def bright():
+    image.cropped = image[int(input()),int(input())]
+    print('work')
+    cv2.imshow('crop',image.cropped)
+
+list = [resize,bright]
+for i in list:
+    print(i)
+
+option = input('choose')
+
+if option =='resize':
+    resize()
+elif option == 'bright':
+    bright()
+
+cv2.waitkey(0)
+cv2.destroyAllWindows()
+# importing module from PIL import ImageColor
+
+# using getrgb for red img2 = ImageColor.getcolor("red",'L')
+print(img2)
+
+# code that turns it to black and white
+img = cv2.imread(pic)
+gray_img = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+status = cv2.imwrite(pic,gray_img)
+
+cv2.imshow("Original",img)
+cv2.imshow("Gray Scaled",gray_img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
     canvas2.image = img1
 def blur(event):  # The Blur effect
     global img_path, img1, imgg
